@@ -16,7 +16,6 @@ FROM --platform=linux/amd64 debian:bookworm-slim
 
 WORKDIR /app
 COPY --from=builder /build/target/release/shopping-sessions /app/pipeline
-COPY run.sh /app/run.sh
-RUN chmod 755 /app/pipeline /app/run.sh
-
-CMD ["/app/pipeline"]
+RUN chmod 755 /app/pipeline
+USER 1000
+ENTRYPOINT ["/app/pipeline"]
